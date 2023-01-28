@@ -1,0 +1,17 @@
+html 
+  head
+    style 
+      include ../style.css
+  title Rain Memes
+body
+  div#header
+    h2 Rain Memes
+  div#content
+    each meme in memes
+      div(class="meme")
+        h4= meme[0]
+        img(src= meme[1])
+  div#footer
+    div Developed by 
+      a(href='https://youtube.com/@wrainf') wrainf
+  

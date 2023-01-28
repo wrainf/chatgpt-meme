@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+}
+
+#content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.meme {
+  width: 256px;
+  background-color: black;
+}
+
+h4 {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+  color: white;
+  font-family: 'Arial','sans-serif';
+}
+
+#header, #footer {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial','sans-serif';
+}
+
+#content {
+  background-color: #edebeb;
+}
+
+a{
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
