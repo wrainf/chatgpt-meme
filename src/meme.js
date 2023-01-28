@@ -16,6 +16,24 @@ async function getMemeIdea(){
     frequency_penalty: 1,
     presence_penalty: 1,
   });
-  return response.data.data;
+  const result = formatResult(response)
+  return result;
 }
-getMemeIdea();
+
+function formatResult(response) {
+  const result = response.data.choices[0].text.split(/\n/);
+  result.shift()
+  result.shift()
+  result[0] = removeInitial(result[0]);
+  result[1] = removeInitial(result[1]);
+  return result;
+}
+
+function removeInitial(word) {
+  const colonIndex = word.indexOf(':')
+  const final = word.slice(colonIndex+2)
+  return final
+}
+
+module.exports = { getMemeIdea };
+
