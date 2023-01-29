@@ -1,15 +1,11 @@
-const { Configuration, OpenAIApi } = require("openai");
-const dotenv = require('dotenv');
-dotenv.config();
-async function getMemeIdea(){
-  const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
+const { OpenAIApi } = require("openai");
+
+async function getMemeIdea(configuration){
   const openai = new OpenAIApi(configuration);
   
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: "generate a funny meme ideas seprated into caption and image components",
+    prompt: "generate a funny meme idea seprated into caption and simple image components",
     temperature: 0.6,
     max_tokens: 150,
     top_p: 1,
@@ -22,6 +18,7 @@ async function getMemeIdea(){
 
 function formatResult(response) {
   const result = response.data.choices[0].text.split(/\n/);
+  console.log(result)
   result.shift()
   result.shift()
   result[0] = removeInitial(result[0]);

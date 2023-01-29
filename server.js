@@ -1,5 +1,6 @@
 const { getMemeIdea } = require('./meme');
-const { createImage } = require('./image');
+const { createImage } = require('./image.js');
+const { Configuration } = require("openai");
 const express = require('express');
 const dotenv = require('dotenv');
 
@@ -13,13 +14,17 @@ app.listen(port);
 console.log('Server started at http://localhost:' + port);
 
 dotenv.config();
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 app.get('/', async function(req,res) {
   const memes = []
-  for (let index = 0; index < 5; index++) {
+  for (let index = 0; index < 2; index++) {
     const meme = []
-    const memeIdea = await getMemeIdea();
-    const imageURL = await createImage(memeIdea[1]);
+    const memeIdea = await getMemeIdea(configuration);
+    console.log(memeIdea);
+    const imageURL = await createImage(memeIdea[1],configuration);
     meme.push(memeIdea[0]);
     meme.push(imageURL)
     memes.push(meme)
